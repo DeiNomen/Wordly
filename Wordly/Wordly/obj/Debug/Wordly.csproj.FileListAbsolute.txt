@@ -1,0 +1,9 @@
+E:\My Projects\Wordly\Wordly\bin\Debug\Wordly.exe
+E:\My Projects\Wordly\Wordly\bin\Debug\Wordly.pdb
+E:\My Projects\Wordly\Wordly\obj\Debug\Wordly.csprojAssemblyReference.cache
+E:\My Projects\Wordly\Wordly\obj\Debug\Wordly.mainForm.resources
+E:\My Projects\Wordly\Wordly\obj\Debug\Wordly.Properties.Resources.resources
+E:\My Projects\Wordly\Wordly\obj\Debug\Wordly.csproj.GenerateResource.cache
+E:\My Projects\Wordly\Wordly\obj\Debug\Wordly.csproj.CoreCompileInputs.cache
+E:\My Projects\Wordly\Wordly\obj\Debug\Wordly.exe
+E:\My Projects\Wordly\Wordly\obj\Debug\Wordly.pdb
