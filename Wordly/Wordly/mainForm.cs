@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -399,13 +399,15 @@ namespace Wordly
                 var letterMenu = item.Text;
                 var chars = letterMenu.Split(' ');
                 var letter = "";
+                var index = 0;
                 foreach(var ch in chars)
                 {
-                    if (ch != "*")
+                    if ((ch != "*") && (index + 1 == (int)item.Tag))
                     {
                         letter = ch;
                         break;
                     }
+                    index++;
                 }
 
                 switch (item.Tag)
@@ -472,14 +474,28 @@ namespace Wordly
         private string GetMenuItemText(string letter, int index)
         {            
             var result = "";
-            for (int i = 0; i < index; i++)
+            if (matched[index] != "")
             {
-                result += "* ";
+                return "";
             }
-            result += letter + " ";
-            for(int i = index; i < letterCount - 1; i++)
+
+            for (int i = 0; i < letterCount; i++)
             {
-                result += "* ";
+                if (i == index)
+                {
+                    result += letter + " ";
+                }
+                else
+                {
+                    if (matched[i] != "")
+                    {
+                        result += matched[i] + " ";
+                    }
+                    else
+                    {
+                        result += "* ";
+                    }
+                }
             }
 
             return result.Trim();
@@ -490,21 +506,16 @@ namespace Wordly
             cmsSelectLetter.Items.Clear();
             for (int i = 0; i < letterCount; i++)
             {
-                cmsSelectLetter.Items.Add(new ToolStripMenuItem(GetMenuItemText(letter, i), null, (sender, e) => MenuHandler(sender)));
+                var menuText = GetMenuItemText(letter, i);
+                if (menuText != "")
+                {
+                    var menuItem = new ToolStripMenuItem(menuText, null, (sender, e) => MenuHandler(sender));
+                    menuItem.Tag = i + 1;                    
+                    cmsSelectLetter.Items.Add(menuItem);
+                }
             }
             cmsSelectLetter.Items.Add("-");
             cmsSelectLetter.Items.Add("Отмена");
-
-            var tag = 1;
-            foreach(var item in cmsSelectLetter.Items)
-            {
-                if (tag > letterCount)
-                {
-                    break;
-                }
-                (item as ToolStripMenuItem).Tag = tag;
-                tag++;
-            }
         }
 
         private void dgLetters_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
